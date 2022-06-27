@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
 
@@ -35,3 +36,79 @@ def group_posts(request, slug):
     }
 
     return render(request, 'posts/group_list.html', context)
+
+
+def profile():
+    pass
+def post_detail():
+    pass
+
+
+@login_required
+def post_create(request):
+    """Здесь код запроса к модели и создание словаря контекста."""
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+
+            return redirect('posts:profile', post.author)
+
+        return render(
+            request,
+            'posts/create_post.html',
+            {
+                'form': form,
+            }
+        )
+
+    form = PostForm()
+
+    return render(
+        request,
+        'posts/create_post.html',
+        {
+            'form': form,
+        }
+    )
+ 
+@login_required
+def post_edit(request, post_id):
+    """Здесь код запроса к модели и создание словаря контекста."""
+    post = get_object_or_404(Post, pk=post_id)
+    is_edit = True
+    if post.author != request.user:
+        return redirect('posts', post.id)
+    
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            form.save()
+
+            return redirect('posts:profile', post.author)
+
+        return render(
+            request,
+            'posts/create_post.html',
+            {
+                'post': post,
+                'form': form,
+                'is_edit': is_edit,
+            }
+        )
+    
+    form = PostForm(instance=post)
+
+    return render(
+        request,
+        'posts/create_post.html',
+        {
+            'post': post,
+            'form': form,
+            'is_edit': is_edit,
+        }
+    )

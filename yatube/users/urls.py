@@ -6,7 +6,11 @@ from . import views
 app_name = 'users'
 
 urlpatterns = [
-    path('signup/', views.SignUp.as_view(), name='signup'),
+    path(
+        'signup/',
+        views.SignUp.as_view(template_name='users/signup.html'),
+        name='signup'
+    ),
     path(
         'login/',
         LoginView.as_view(template_name='users/login.html'),

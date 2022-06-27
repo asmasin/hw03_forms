@@ -14,7 +14,7 @@
             <a class="p-2 text-dark" href="{% url 'logout' %}">Выйти</a>
             {% else %}
             <a class="p-2 text-dark" href="{% url 'login' %}">Войти</a> |
-            <a class="p-2 text-dark" href="{% url 'signup' %}">Регистрация</a>
+            {% comment %} <a class="p-2 text-dark" href="{% url 'signup' %}">Регистрация</a> {% endcomment %}
             {% endif %}
         </nav>
     </div>
