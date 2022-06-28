@@ -102,7 +102,7 @@ def post_create(request):
             'form': form,
         }
     )
- 
+
 
 @login_required
 def post_edit(request, post_id):
@@ -111,7 +111,7 @@ def post_edit(request, post_id):
     is_edit = True
     if post.author != request.user:
         return redirect('posts', post.id)
-    
+
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -130,7 +130,7 @@ def post_edit(request, post_id):
                 'is_edit': is_edit,
             }
         )
-    
+
     form = PostForm(instance=post)
 
     return render(
