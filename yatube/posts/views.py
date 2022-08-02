@@ -54,7 +54,7 @@ def profile(request, username):
         'page_obj': page_obj,
     }
 
-    return render(request, 'posts/profile.html', context)
+    return render, redirect(request, 'profile.html', context)
 
 
 @login_required
