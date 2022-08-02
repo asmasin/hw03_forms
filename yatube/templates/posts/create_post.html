@@ -13,12 +13,12 @@
                   {% if action_url %}
                    action="{% url action_url %}"
                   {% endif %}
-                  {% csrf_token %}
                   {% if is_edit %}
                   {{form.as_p}}
                   {% else %}
                   {{ form.as_p }}
                   {% endif %}
+                  {% csrf_token %}
                   <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">
                       {% if is_edit %}

@@ -54,7 +54,7 @@ def profile(request, username):
         'page_obj': page_obj,
     }
 
-    return render, redirect(request, 'profile.html', context)
+    return render(request, 'posts/profile.html', context)
 
 
 @login_required
@@ -62,11 +62,11 @@ def post_detail(request, post_id):
     """"""
     post = get_object_or_404(Post, pk=post_id)
     post_count = Post.objects.filter(author=post.author).count()
-    paginator = Paginator(post_count, POST_COUNT)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    # paginator = Paginator(post_count, POST_COUNT)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
     context = {
-        'page_obj': page_obj,
+        'post': post,
         'post_count': post_count,
                }
 
