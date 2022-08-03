@@ -12,6 +12,18 @@ urlpatterns = [
     path('profile/<str:username>/', views.profile, name='profile'),
     path('posts/<int:post_id>/', views.post_detail, name='post_detail'),
     # path(
+    #     'logout/',
+    #      LogoutView.as_view(
+    #         template_name='users/logged_out.html'),
+    #         name='logout'
+    #      ),
+    # path(
+    #     'login',
+    #      LoginView.as_view(
+    #         template_name='users/login.html'),
+    #         name='login'
+    #      ),
+    # path(
     #     'password_change/',
     #     PasswordChangeView.as_view(
     #         template_name='users/password_change_form.html'),
