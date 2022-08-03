@@ -67,7 +67,7 @@ def post_detail(request, post_id):
     context = {
         'post': post,
         'post_count': post_count,
-               }
+    }
 
     return render(request, 'posts/post_detail.html', context)
 
@@ -141,5 +141,3 @@ def post_edit(request, post_id):
             'is_edit': is_edit,
         }
     )
-
-
