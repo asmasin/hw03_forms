@@ -1,10 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import (PasswordChangeDoneView,
-                                       PasswordChangeView,
-                                       PasswordResetCompleteView,
-                                       PasswordResetConfirmView,
-                                       PasswordResetDoneView,
-                                       PasswordResetView)
+
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -69,9 +64,6 @@ def post_detail(request, post_id):
     """"""
     post = get_object_or_404(Post, pk=post_id)
     post_count = Post.objects.filter(author=post.author).count()
-    # paginator = Paginator(post_count, POST_COUNT)
-    # page_number = request.GET.get('page')
-    # page_obj = paginator.get_page(page_number)
     context = {
         'post': post,
         'post_count': post_count,
