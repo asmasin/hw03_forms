@@ -22,9 +22,9 @@
     <title>
       {% block title %}Данные отсутствуют{% endblock %}
     </title>
+  {% include 'includes/header.html' %}
   </head>
   <body class="d-flex flex-column min-vh-100">
-{% include 'includes/header.html' %}
     <main>
       <div container class="mt-5 pt-5">
         {% block content %}
