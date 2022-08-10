@@ -1,37 +1,43 @@
 {% load user_filters %}
-<div class="row justify-content-center">
-  <div class="col-sm-8 p-5">
-    <div class="card">
-      <div class="card-header">
-        Введите новый пароль
-      </div>
-      <div class="card-body">
-        <form method="post">
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 p-5">
+      <div class="card">
+        <div class="card-header">
+          Введите новый пароль
+        </div>
+        <div class="card-body">
+          <form method="post">
           {% csrf_token %}
-          {% for field in form %}
-          <div class="form-group row" aria-required {% if field.field.required %}"true"{% else %}"false"{% endif %}>
-            <label for="{{ field.id_for_label }}" class="col-md-4 col-form-label text-md-right offset-md-1">
-              {{ field.label }}
-              {% if field.field.required %}<span class="required">*</span>
-              {% endif %}
-            </label>
-            <div class="col-sm-8">
-              {{ field|addclass:"form-control" }}
-              {% if field.help_text %}
-              <small id="{{ field.id_for_label }}-help" class="form-text text-muted">
-                {{ field.help_text|safe }}
-              </small>
-              {% endif %}
+            <div class="form-group row my-3 p-3">
+              <label for="id_new_password1">
+                Новый пароль        
+                <span class="required text-danger">*</span>        
+              </label>    
+              <input type="password" name="new_password1" class="form-control" required id="id_new_password1">      
+              <small id="id_new_password1-help" class="form-text text-muted">
+                <ul>
+                  <li>Ваш пароль не должен совпадать с вашим именем или другой персональной информацией или быть слишком похожим на неё.</li>
+                  <li>Ваш пароль должен содержать как минимум 8 символов.</li><li>Ваш пароль не может быть одним из широко распространённых паролей.</li>
+                  <li>Ваш пароль не может состоять только из цифр.</li>
+                </ul>
+              </small>      
             </div>
-          </div>
-          {% endfor %}
-          <div class="col-sm-8">
-            <button type="submit" class="btn btn-primary">
-              Назначить новый пароль
-            </button>
-          </div>
-        </form>
+            <div class="form-group row my-3 p-3">
+              <label for="id_new_password2">
+                Подтверждение нового пароля        
+                <span class="required text-danger">*</span>        
+              </label>    
+              <input type="password" name="new_password2" class="form-control" required id="id_new_password2">      
+            </div>
+            <div class="col-sm-6">
+              <button type="submit" class="btn btn-primary">
+                Назначить новый пароль
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>   
+</div>

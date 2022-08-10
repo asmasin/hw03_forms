@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}{{ post.text|truncatechars:30 }}{% endblock %}
 {% block content %}
+<div class="container py-5">
   <div class="row">
-    <aside class="col-12 col-md-3">
+    <aside class="col-12 col-md-4">
       <ul class="list-group list-group-flush">
         <li class="list-group-item d-flex justify-content-between align-items-center">
           Дата публикации: <span>{{ post.pub_date|date:"d E Y" }}</span>
@@ -22,11 +23,11 @@
           {% endif %}
           <a href="{% url 'posts:profile' post.author.username %}">все записи пользователя</a>
         </li>
-      </li>
-    </ul>
-  </aside>
-  <article class="col-12 col-md-9">
-    <p>{{ post.text|linebreaksbr }}</p>
-  </article>
+      </ul>
+    </aside>
+    <article class="col-12 col-md-8">
+      <p>{{ post.text|linebreaksbr }}</p>
+    </article>
+  </div>  
 </div>
 {% endblock %}
