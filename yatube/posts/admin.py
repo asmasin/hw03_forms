@@ -5,12 +5,12 @@ from .models import Group, Post
 
 @admin.register(Group)
 class GroupAdmin(admin.ModelAdmin):
-    """
+    '''
     Класс, описывающий отображаемые поля в админке для модели Group,
     list_display        - список полей для отображения,
     search_fields       - поле по которому работает поиск,
     empty_value_display - название по-умолчания для пустых полей.
-    """
+    '''
 
     list_display = (
         'pk',
@@ -26,14 +26,14 @@ class GroupAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    """
+    '''
     Класс, описывающий отображаемые поля в админке для модели Post,
     list_display        - список полей для отображения,
     list_editable       - поле, которое редактируется в списке,
     search_fields       - поле по которому работает поиск,
     list_filter         - поле по которому установлена сортировка списка,
     empty_value_display - название по-умолчания для пустых полей.
-    """
+    '''
 
     list_display = (
         'pk',
