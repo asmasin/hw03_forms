@@ -133,7 +133,7 @@ def post_edit(request, post_id):
             post.author = request.user
             form.save()
 
-            return redirect('posts:post_detail', post.author)
+            return redirect('posts:profile', post.author)
 
         return render(
             request,

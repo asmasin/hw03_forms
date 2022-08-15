@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}
 {% if is_edit %}
-Редактировать пост
+Редактировать запись
 {% else %}
-Добавить пост
+Добавить запись
 {% endif %}
 {% endblock %}
 {% block content %}
@@ -14,14 +14,14 @@
         <div class="card">
           <div class="card-header">
             {% if is_edit %}
-            Редактировать пост
+            Редактировать запись
             {% else %}
-            Добавить пост
+            Добавить запись
             {% endif %}
           </div>
           <div class="card-body">
             <form method="post">
-              {% if action_url %} action="{% url action_url %}" {% endif %}>
+              {% if action_url %} action="{% url action_url %}" {% endif %}
               {% csrf_token %}
               <div class="form-group row my-3 p-3">
                 <label for="id_text">
