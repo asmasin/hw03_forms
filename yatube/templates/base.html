@@ -22,11 +22,11 @@
     <title>
       {% block title %}Данные отсутствуют{% endblock %}
     </title>
-  {% include 'includes/header.html' %}
+    {% include 'includes/header.html' %}
   </head>
   <body class="d-flex flex-column min-vh-100">
     <main>
-      <div container class="mt-5 pt-5">
+      <div "container" class="mt-5 pt-5">
         {% block content %}
           <h3>К сожалению не удалось загрузить данные. Мы уже работаем над решением проблемы.</h3>
         {% endblock %}

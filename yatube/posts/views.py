@@ -9,11 +9,11 @@ from .models import Group, Post, User
 
 
 def index(request):
-    '''
+    """
     Функция обрабатывает запросы к главной странице,
     получает данные из модели Post и связанной модели Group,
     выводит 10 последних постов и рендерит их в шаблон.
-    '''
+    """
     post_list = Post.objects.select_related('group', 'author')
     paginator = Paginator(post_list, POST_COUNT)
     page_number = request.GET.get('page')
@@ -26,11 +26,11 @@ def index(request):
 
 
 def group_posts(request, slug):
-    '''
+    """
     Функция обрабатывает запросы к странице с публикациями группы,
     получает группу из модели и проверяет url к ней компановщиком slug,
     собирает словарь из данных и рендерит их в шаблон.
-    '''
+    """
     group = get_object_or_404(Group, slug=slug)
     post_list = group.posts.select_related('author')
     paginator = Paginator(post_list, POST_COUNT)
@@ -45,9 +45,10 @@ def group_posts(request, slug):
 
 
 def profile(request, username):
-    '''
-
-    '''
+    """
+    Функция обрабатывает запросы к странице профиля пользователя,
+    получает посты пользователя, собирает словарь и рендерит шаблон.
+    """
     author = get_object_or_404(User, username=username)
     post_list = author.posts.select_related('author')
     post_count = post_list.count()
@@ -66,9 +67,9 @@ def profile(request, username):
 
 @login_required
 def post_detail(request, post_id):
-    '''
-
-    '''
+    """
+    Функция обрабатывает запросы к странице поста.
+    """
     post = get_object_or_404(Post, pk=post_id)
     post_count = Post.objects.filter(author=post.author).count()
     context = {
@@ -81,9 +82,11 @@ def post_detail(request, post_id):
 
 @login_required
 def post_create(request):
-    '''
-
-    '''
+    """
+    Функция обрабатывает запросы к странице добавления поста.
+    После успешной валидации формы добавляется пост, а автор
+    перенаправляется на страницу профиля.
+    """
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -114,13 +117,14 @@ def post_create(request):
 
 @login_required
 def post_edit(request, post_id):
-    '''
-
-    '''
+    """
+    Функция обрабатывает запросы к странице изменения поста.
+    Авторы могут редактировать свои посты, чужие только просматривать.
+    """
     post = get_object_or_404(Post, pk=post_id)
     is_edit = True
     if post.author != request.user:
-        return redirect('posts', post.id)
+        return redirect('posts:post_detail', post_id)
 
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
@@ -129,7 +133,7 @@ def post_edit(request, post_id):
             post.author = request.user
             form.save()
 
-            return redirect('posts:profile', post.author)
+            return redirect('posts:post_detail', post.author)
 
         return render(
             request,
