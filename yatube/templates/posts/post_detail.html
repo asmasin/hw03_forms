@@ -9,13 +9,13 @@
           Дата публикации: <span>{{ post.pub_date|date:"d E Y" }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          Группа: <span>{{ post.group }}</span>
+          Группа: <span></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          Автор: {% if author.get_full_name %}{{ author.get_full_name }}{% else %}{{ author.username }}{% endif %}
+          Автор: <span>{{ post.author.get_full_name }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          Всего постов автора:  <span>{{ post_count }}</span>
+          Всего постов автора: <span>{{ post_count }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           {% if post.group %}

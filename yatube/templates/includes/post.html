@@ -4,7 +4,7 @@
     <li>Дата публикации: {{ post.pub_date|date:"d E Y" }}</li>
   </ul>
   <p>{{ post.text|linebreaksbr }}</p>
-  {% if post.group %}
+  {% if not group %}
     <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
   {% endif %}
 </article>

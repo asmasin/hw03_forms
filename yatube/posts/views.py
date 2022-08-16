@@ -65,7 +65,6 @@ def profile(request, username):
     return render(request, 'posts/profile.html', context)
 
 
-@login_required
 def post_detail(request, post_id):
     """
     Функция обрабатывает запросы к странице поста.
@@ -133,7 +132,7 @@ def post_edit(request, post_id):
             post.author = request.user
             form.save()
 
-            return redirect('posts:profile', post.author)
+            return redirect('posts:post_detail', post_id)
 
         return render(
             request,
