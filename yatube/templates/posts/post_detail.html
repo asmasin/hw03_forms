@@ -9,7 +9,7 @@
           Дата публикации: <span>{{ post.pub_date|date:"d E Y" }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          Группа: <span>{% if post.group %}{{ post.group }}{% endif %}</span>
+          Группа: <span>{{ post.group }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           Автор: <span>{{ post.author.get_full_name }}</span>
@@ -18,7 +18,7 @@
           Всего постов автора: <span>{{ post.author.posts.count }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          {% if post.group %}
+          {% if not group and post.group %}
             <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
           {% endif %}
           <a href="{% url 'posts:profile' post.author.username %}">все записи пользователя</a>

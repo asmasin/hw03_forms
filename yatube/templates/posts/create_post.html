@@ -21,10 +21,10 @@
             {% endif %}
           </div>
           <div class="card-body">
-            {% include 'includes/form_errors.py' %}
+            {% include 'includes/form_errors.html' %}
             <form method="post""{% if user.username == post.author %}"action="{% url 'posts:post_edit' %}""{% else %}"action="{% url 'posts:post_create' %}""{% endif %}">
               {% csrf_token %}
-              {% include 'includes/form.py' %}
+              {% include 'includes/form.html' %}
               <div class="col-sm-6">
                 <button type="submit" class="btn btn-primary">
                   {% if is_edit %}
