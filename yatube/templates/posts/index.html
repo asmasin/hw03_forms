@@ -4,9 +4,9 @@
 <div class="container">
   <h1>Последние обновления на сайте</h1>
   {% for post in page_obj %}
-  {% include 'includes/post.html' %}
+  {% include 'posts/post.html' %}
   {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}
-  {% include 'includes/paginator.html' %}
+  {% include 'posts/paginator.html' %}
 </div>
 {% endblock %}
