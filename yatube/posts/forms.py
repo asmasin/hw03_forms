@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
             'text',
             'group',
         )
-        help_text = {
+        help_texts = {
             'text': 'Текст публикации',
             'group': 'Группа публикации',
         }

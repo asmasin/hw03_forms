@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from posts.forms import PostForm
-from posts.utils import paginator
+from posts.utils import page_nav
 from .models import Group, Post, User
 
 
@@ -13,7 +13,7 @@ def index(request):
     выводит 10 последних постов и рендерит их в шаблон.
     """
     post_list = Post.objects.select_related('group', 'author')
-    page_obj = paginator(request, post_list)
+    page_obj = page_nav(request, post_list)
     context = {
         'page_obj': page_obj,
     }
@@ -29,7 +29,7 @@ def group_posts(request, slug):
     """
     group = get_object_or_404(Group, slug=slug)
     post_list = group.posts.select_related('author')
-    page_obj = paginator(request, post_list)
+    page_obj = page_nav(request, post_list)
     context = {
         'group': group,
         'page_obj': page_obj,
@@ -45,7 +45,7 @@ def profile(request, username):
     """
     author = get_object_or_404(User, username=username)
     post_list = author.posts.select_related('author')
-    page_obj = paginator(request, post_list)
+    page_obj = page_nav(request, post_list)
     context = {
         'author': author,
         'page_obj': page_obj,

@@ -19,10 +19,10 @@
   </h1>
   <h3>Всего постов: {{ author.posts.count }}</h3>
   {% for post in page_obj %}
-  {% include 'posts/post.html' %}
+  {% include 'posts/includes/post.html' %}
   {% if not forloop.last %}<hr>
   {% endif %}
   {% endfor %}
-  {% include 'posts/paginator.html' %}
+  {% include 'posts/includes/paginator.html' %}
 </div>
 {% endblock %}
